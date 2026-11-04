@@ -1,5 +1,4 @@
 services:
-
   postgres-db:
     image: postgres:16-alpine
     container_name: postgres-booking
@@ -11,6 +10,33 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  booking-api-1:
+    build: .
+    container_name: booking-app-1
+    ports:
+      - "3001:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      INSTANCE_NAME: ${INSTANCE_NAME}
+    depends_on:
+      - postgres-db
+
+
+  booking-api-2:
+    build: .
+    container_name: booking-app-2
+    ports:
+      - "3002:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      INSTANCE_NAME: ${INSTANCE_NAME}
+    depends_on:
+      - postgres-db
 
 volumes:
   postgres_data:

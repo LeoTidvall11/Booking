@@ -36,7 +36,6 @@ public class BookingModel {
     @Column(nullable = false)
     private Date date;
 
-    @Column(nullable = false)
     private String status;
 
 
