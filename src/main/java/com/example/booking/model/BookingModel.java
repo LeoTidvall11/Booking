@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.Instant;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -34,7 +36,10 @@ public class BookingModel {
     private short numberOfPeople;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDate date;
+
+    @Column
+    private Instant createdAt;
 
     private String status;
 

@@ -2,6 +2,7 @@ package com.example.booking.service;
 
 import com.example.booking.model.BookingModel;
 import com.example.booking.repository.IBookingRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,6 +12,8 @@ import java.util.UUID;
 
 @Service
 public class BookingService {
+
+
 
     private final IBookingRepository bookingRepository;
 
@@ -24,7 +27,7 @@ public class BookingService {
     }
 
     public List<BookingModel> getAllBookings() {
-        return bookingRepository.findAll();
+        return bookingRepository.findAll(Sort.by(Sort.Direction.DESC,"createdAt"));
     }
 
     public BookingModel getBookingById (UUID id) {
