@@ -38,7 +38,7 @@ services:
 
   booking-api-3:
     build: .
-    container_name: booking-app-2
+    container_name: booking-app-3
 
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/${POSTGRES_DB}
