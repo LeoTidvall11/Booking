@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.time.Instant;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -40,8 +39,10 @@ public class BookingModel {
 
     @Column
     private Instant createdAt;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
 
-    private String status;
+    private BookingStatus status;
 
 
 }
