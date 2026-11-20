@@ -1,0 +1,7 @@
+build/
+.gradle/
+postgres-data/
+.env
+.git/
+.idea/
+*.md
