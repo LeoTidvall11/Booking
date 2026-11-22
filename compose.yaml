@@ -26,6 +26,12 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       INSTANCE_NAME: "api-1"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/actuator/health | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -42,6 +48,12 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       INSTANCE_NAME: "api-2"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/actuator/health | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     depends_on:
       postgres-db:
         condition: service_healthy
@@ -56,6 +68,12 @@ services:
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
       INSTANCE_NAME: "api-3"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8080/actuator/health | grep -q UP"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 40s
     depends_on:
       postgres-db:
         condition: service_healthy
