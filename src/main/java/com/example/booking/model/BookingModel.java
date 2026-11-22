@@ -41,7 +41,8 @@ public class BookingModel {
 
     @Column(nullable = false)
     @Min(value = 1, message = "numberOfPeople måste vara minst 1")
-    private short numberOfPeople;
+    @NotNull(message = "numberOfPeople måste anges")
+    private Short numberOfPeople;
 
     @Column(nullable = false)
     @NotNull(message = "date måste anges")
