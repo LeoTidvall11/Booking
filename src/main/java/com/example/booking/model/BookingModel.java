@@ -37,12 +37,17 @@ public class BookingModel {
     @Column(nullable = false)
     private LocalDateTime date;
 
-    @Column
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
 
     private BookingStatus status;
+
+    @PrePersist
+    void onCreate() {
+        createdAt = Instant.now();
+    }
 
 
 }
