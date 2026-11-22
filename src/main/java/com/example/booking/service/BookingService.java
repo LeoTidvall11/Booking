@@ -32,12 +32,12 @@ public class BookingService {
 
     public BookingModel getBookingById (UUID id) {
         return bookingRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Booking not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found"));
     }
 
     public void deleteBookingById(UUID id){
         if(!bookingRepository.existsById(id)){
-            throw new RuntimeException("Booking not found");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Booking not found");
         }
         bookingRepository.deleteById(id);
     }
