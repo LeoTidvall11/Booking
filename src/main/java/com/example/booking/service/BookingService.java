@@ -1,6 +1,7 @@
 package com.example.booking.service;
 
 import com.example.booking.model.BookingModel;
+import com.example.booking.model.BookingStatus;
 import com.example.booking.repository.IBookingRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,9 @@ public class BookingService {
 
 
     public BookingModel createBooking(BookingModel booking) {
+        if (booking.getStatus() == null) {
+            booking.setStatus(BookingStatus.PENDING);
+        }
         return bookingRepository.save(booking);
     }
 
@@ -55,7 +59,9 @@ public class BookingService {
         existingBooking.setPhoneNumber(updatedBooking.getPhoneNumber());
         existingBooking.setNumberOfPeople(updatedBooking.getNumberOfPeople());
         existingBooking.setDate(updatedBooking.getDate());
-        existingBooking.setStatus(updatedBooking.getStatus());
+        if (updatedBooking.getStatus() != null) {
+            existingBooking.setStatus(updatedBooking.getStatus());
+        }
 
         return bookingRepository.save(existingBooking);
     }

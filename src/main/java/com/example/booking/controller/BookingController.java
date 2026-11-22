@@ -2,6 +2,7 @@ package com.example.booking.controller;
 
 import com.example.booking.model.BookingModel;
 import com.example.booking.service.BookingService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ public class BookingController {
     }
 
     @PostMapping
-    public BookingModel createBooking(@RequestBody BookingModel booking) {
+    public BookingModel createBooking(@Valid @RequestBody BookingModel booking) {
         return bookingService.createBooking(booking);
     }
 
@@ -44,7 +45,7 @@ public class BookingController {
     }
 
     @PutMapping("/{id}")
-    public BookingModel updateBooking(@PathVariable UUID id, @RequestBody BookingModel updatedBooking){
+    public BookingModel updateBooking(@PathVariable UUID id, @Valid @RequestBody BookingModel updatedBooking){
         return bookingService.updateBooking(id, updatedBooking);
     }
 }
